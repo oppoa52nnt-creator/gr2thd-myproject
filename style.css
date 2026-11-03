@@ -1,12 +1,163 @@
-.slide-container {
-  width: 100%;
-  max-width: 100vw;
-  overflow-x: auto; /* Hoặc allow scroll/swipe */
-  scroll-snap-type: x mandatory; /* Giúp vuốt từng slide mượt trên mobile */
-  -webkit-overflow-scrolling: touch; /* Tối ưu cho Safari/iOS */
+/* Keep the page aligned with the full-screen slide layout. */
+html,
+body {
+  margin: 0;
+  min-height: 100%;
 }
 
-.slide-item {
-  flex: 0 0 100%;
-  scroll-snap-align: start;
+body {
+  padding: 0;
 }
+
+/* Animated detail pages for the regional conflict cards. */
+#app-modal {
+  animation: modal-fade-in 240ms ease-out both;
+  overflow-y: auto;
+}
+
+.region-detail-panel {
+  animation: detail-rise 420ms cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.region-detail {
+  --detail-gold: #f4a261;
+  color: #e0e6ed;
+}
+
+.detail-kicker {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 8px 0 14px;
+  color: var(--detail-gold);
+  font: 700 10px/1.5 "JetBrains Mono", monospace;
+  letter-spacing: .12em;
+}
+
+.region-art {
+  display: block;
+  width: 100%;
+  max-height: 320px;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .25);
+}
+
+.art-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: art-pulse 2.2s ease-out infinite;
+}
+
+.art-pulse.delay {
+  animation-delay: .7s;
+}
+
+.art-dash {
+  animation: dash-flow 8s linear infinite;
+}
+
+.detail-intro {
+  margin: 20px 0;
+  color: rgba(255, 255, 255, .83);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.detail-points {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.detail-point {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, .09);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .035);
+  animation: point-appear 420ms ease-out both;
+  animation-delay: var(--point-delay, 0ms);
+}
+
+.detail-point-number {
+  flex: 0 0 auto;
+  color: #e63946;
+  font: 700 12px "JetBrains Mono", monospace;
+}
+
+.detail-point h3 {
+  margin: 0 0 6px;
+  color: #f4a261;
+  font: 700 14px "Inter", sans-serif;
+}
+
+.detail-point p {
+  margin: 0;
+  color: rgba(255, 255, 255, .72);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.detail-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 13px 15px;
+  border-left: 3px solid #f4a261;
+  border-radius: 8px;
+  background: rgba(244, 162, 97, .09);
+  color: rgba(255, 255, 255, .8);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.detail-note i,
+.detail-note strong {
+  color: #f4a261;
+}
+
+@keyframes modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes detail-rise {
+  from { opacity: 0; transform: translateY(18px) scale(.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes point-appear {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes art-pulse {
+  0% { opacity: .85; transform: scale(.75); }
+  75%, 100% { opacity: 0; transform: scale(1.8); }
+}
+
+@keyframes dash-flow {
+  to { stroke-dashoffset: -100; }
+}
+
+@media (max-width: 640px) {
+  .detail-points { grid-template-columns: 1fr; }
+  .detail-kicker { font-size: 9px; }
+  .region-art { min-height: 160px; }
+  .detail-intro { font-size: 13px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #app-modal,
+  .region-detail-panel,
+  .detail-point,
+  .art-pulse,
+  .art-dash {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
