@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chiến Tranh & Xung Đột Sau Chiến Tranh Lạnh - Lịch Sử 11</title>
+  <link rel="stylesheet" href="styles.css">
   
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -178,11 +179,11 @@
       <!-- Main Content Container -->
       <div class="z-10 max-w-4xl w-full flex flex-col items-center py-4">
         <p class="font-mono text-brandGold text-xs sm:text-sm tracking-widest uppercase mb-2 sm:mb-3">
-          <i class="fa-solid fa-film mr-1.5"></i>THUYẾT TRÌNH ĐIỆN ẢNH GIÁN TIẾP
+          <i class="fa-solid fa-film mr-1.5"></i>TÀI LIỆU LỊCH SỬ
         </p>
         
         <h1 class="font-cinzel text-2xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-wide leading-tight mb-3 sm:mb-4 drop-shadow-lg px-2">
-          CHIẾN TRANH & XUNG ĐỘT <br>
+          CHIẾN TRANH & XUNG ĐỘT QUÂN SỰ <br>
           <span class="text-brandRed">SAU CHIẾN TRANH LẠNH</span>
         </h1>
         
@@ -258,6 +259,9 @@
                 <span>Thiệt hại to lớn, khiến khoảng <strong>100.000 người thiệt mạng</strong>.</span>
               </li>
             </ul>
+            <button type="button" onclick="openRegionDetail('balkans')" class="mt-4 w-full rounded-lg border border-brandGold/40 bg-brandGold/10 px-3 py-2 font-mono text-[11px] font-bold tracking-wider text-brandGold transition-all hover:bg-brandGold hover:text-brandDark">
+              <i class="fa-solid fa-book-open mr-1"></i> XEM CHI TIẾT
+            </button>
           </div>
         </div>
 
@@ -280,6 +284,9 @@
                 <span>Xung đột đẫm máu I-xra-en - Pa-le-xtin gây hậu quả nặng nề.</span>
               </li>
             </ul>
+            <button type="button" onclick="openRegionDetail('middleEast')" class="mt-4 w-full rounded-lg border border-brandRed/40 bg-brandRed/10 px-3 py-2 font-mono text-[11px] font-bold tracking-wider text-brandRed transition-all hover:bg-brandRed hover:text-white">
+              <i class="fa-solid fa-book-open mr-1"></i> XEM CHI TIẾT
+            </button>
           </div>
         </div>
 
@@ -302,6 +309,9 @@
                 <span>Gây ra <strong>bất ổn an ninh, khủng hoảng nhân đạo, đói nghèo</strong>.</span>
               </li>
             </ul>
+            <button type="button" onclick="openRegionDetail('africa')" class="mt-4 w-full rounded-lg border border-brandGold/40 bg-brandGold/10 px-3 py-2 font-mono text-[11px] font-bold tracking-wider text-brandGold transition-all hover:bg-brandGold hover:text-brandDark">
+              <i class="fa-solid fa-book-open mr-1"></i> XEM CHI TIẾT
+            </button>
           </div>
         </div>
       </div>
@@ -504,4 +514,7 @@
       if (touchendX > touchstartX + 50) prevSlide();
     }
   </script>
-<!-- ... existing code -->
+  <script src="script.js"></script>
+</body>
+</html>
+
