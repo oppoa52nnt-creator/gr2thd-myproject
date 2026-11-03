@@ -1,0 +1,12 @@
+.slide-container {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: auto; /* Hoặc allow scroll/swipe */
+  scroll-snap-type: x mandatory; /* Giúp vuốt từng slide mượt trên mobile */
+  -webkit-overflow-scrolling: touch; /* Tối ưu cho Safari/iOS */
+}
+
+.slide-item {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
