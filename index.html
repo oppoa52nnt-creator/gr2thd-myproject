@@ -123,24 +123,33 @@
   <div class="film-grain"></div>
 
   <!-- HUD Top Bar Navigation & Info -->
-  <header class="fixed top-0 left-0 right-0 z-50 px-6 py-4 bg-brandDark/80 backdrop-blur-md border-b border-white/10 flex justify-between items-center">
-    <div class="flex items-center gap-3">
-      <div class="w-3 h-3 bg-brandRed rounded-full animate-ping"></div>
-      <span class="font-mono text-xs text-brandRed font-bold tracking-widest uppercase">LỊCH SỬ 11 • CHUYÊN ĐỀ 3</span>
-      <span class="text-white/20">|</span>
-      <span class="font-cinzel text-sm font-bold text-white tracking-wider hidden md:inline">BÀI: CHIẾN TRANH VÀ HÒA BÌNH THẾ GIỚI XX</span>
+  <header class="fixed top-0 left-0 right-0 z-50 px-3 sm:px-6 py-2.5 sm:py-4 bg-brandDark/95 backdrop-blur-md border-b border-white/10 flex flex-col sm:flex-row justify-between items-center gap-2">
+    <div class="flex items-center justify-between w-full sm:w-auto">
+      <div class="flex items-center gap-2">
+        <div class="w-2.5 h-2.5 bg-brandRed rounded-full animate-ping"></div>
+        <span class="font-mono text-[10px] sm:text-xs text-brandRed font-bold tracking-widest uppercase">LỊCH SỬ 11 • CHUYÊN ĐỀ 3</span>
+      </div>
+      <!-- Controls on mobile header right -->
+      <div class="flex items-center gap-2 sm:hidden">
+        <button id="audio-toggle-mb" onclick="toggleAudioSimulation()" class="text-white/70 hover:text-brandGold text-xs p-1">
+          <i class="fa-solid fa-volume-xmark" id="audio-icon-mb"></i>
+        </button>
+        <button onclick="toggleFullscreen()" class="text-white/70 hover:text-white text-xs p-1">
+          <i class="fa-solid fa-expand"></i>
+        </button>
+      </div>
     </div>
 
-    <!-- Slide Indicators -->
-    <div class="flex items-center gap-2 font-mono text-xs">
-      <button onclick="goToSlide(0)" class="nav-dot px-3 py-1 rounded bg-brandRed text-white font-bold transition-all" id="dot-0">01. CINEMATIC</button>
-      <button onclick="goToSlide(1)" class="nav-dot px-3 py-1 rounded bg-white/10 text-white/60 hover:bg-white/20 transition-all" id="dot-1">02. NỘI CHIẾN</button>
-      <button onclick="goToSlide(2)" class="nav-dot px-3 py-1 rounded bg-white/10 text-white/60 hover:bg-white/20 transition-all" id="dot-2">03. KHỦNG BỐ 11/9</button>
-      <button onclick="goToSlide(3)" class="nav-dot px-3 py-1 rounded bg-white/10 text-white/60 hover:bg-white/20 transition-all" id="dot-3">04. POSTER & KẾT LUẬN</button>
+    <!-- Slide Indicators - Horizontally Scrollable on Mobile -->
+    <div class="flex items-center gap-1.5 sm:gap-2 font-mono text-[11px] sm:text-xs w-full sm:w-auto overflow-x-auto no-scrollbar py-1">
+      <button onclick="goToSlide(0)" class="nav-dot whitespace-nowrap px-2.5 py-1 rounded bg-brandRed text-white font-bold transition-all shrink-0" id="dot-0">01. CINEMATIC</button>
+      <button onclick="goToSlide(1)" class="nav-dot whitespace-nowrap px-2.5 py-1 rounded bg-white/10 text-white/60 hover:bg-white/20 transition-all shrink-0" id="dot-1">02. NỘI CHIẾN</button>
+      <button onclick="goToSlide(2)" class="nav-dot whitespace-nowrap px-2.5 py-1 rounded bg-white/10 text-white/60 hover:bg-white/20 transition-all shrink-0" id="dot-2">03. KHỦNG BỐ 11/9</button>
+      <button onclick="goToSlide(3)" class="nav-dot whitespace-nowrap px-2.5 py-1 rounded bg-white/10 text-white/60 hover:bg-white/20 transition-all shrink-0" id="dot-3">04. POSTER & KẾT LUẬN</button>
     </div>
 
-    <!-- Fullscreen & Audio Controls -->
-    <div class="flex items-center gap-3">
+    <!-- Fullscreen & Audio Controls (Desktop) -->
+    <div class="hidden sm:flex items-center gap-3">
       <button id="audio-toggle" onclick="toggleAudioSimulation()" class="text-white/60 hover:text-brandGold transition-colors text-sm px-2 py-1 flex items-center gap-2">
         <i class="fa-solid fa-volume-xmark" id="audio-icon"></i>
         <span class="font-mono text-xs hidden sm:inline" id="audio-text">ÂM THANH HUD</span>
@@ -152,64 +161,64 @@
   </header>
 
   <!-- MAIN SLIDE CONTAINER -->
-  <main class="w-full h-screen pt-16 pb-14 relative overflow-hidden">
+  <main class="w-full min-h-screen pt-28 sm:pt-20 pb-20 relative overflow-x-hidden overflow-y-auto">
 
     <!-- SLIDE 1: CINEMATIC MOVIE INTRO & TEAM CREDITS ROLL -->
-    <section class="slide-section active w-full h-full flex-col justify-center items-center relative px-6 text-center" id="slide-0">
+    <section class="slide-section active w-full min-h-[calc(100vh-12rem)] flex-col justify-center items-center relative px-4 sm:px-6 text-center my-auto" id="slide-0">
       <!-- Ambient Visual Layer -->
-      <div class="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,rgba(230,57,70,0.15)_0%,transparent_70%)]"></div>
+      <div class="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,rgba(230,57,70,0.15)_0%,transparent_70%)] pointer-events-none"></div>
       
       <!-- Film Camera Lines Overlay -->
-      <div class="absolute inset-0 pointer-events-none opacity-20 border-x border-y border-white/20 m-6 flex justify-between p-4 font-mono text-[10px] text-white/50">
+      <div class="absolute inset-0 pointer-events-none opacity-20 border-x border-y border-white/20 m-2 sm:m-6 flex justify-between p-2 sm:p-4 font-mono text-[9px] sm:text-[10px] text-white/50">
         <div>REC ● 00:00:26:12</div>
-        <div>4K 60FPS ISO 800</div>
-        <div>HISTORICAL DOCUMENTARY MODE</div>
+        <div class="hidden sm:block">4K 60FPS ISO 800</div>
+        <div>DOCUMENTARY MODE</div>
       </div>
 
       <!-- Main Content Container -->
-      <div class="z-10 max-w-4xl w-full flex flex-col items-center">
-        <p class="font-mono text-brandGold text-sm tracking-widest uppercase mb-3">
-          <i class="fa-solid fa-film mr-2"></i>THUYẾT TRÌNH ĐIỆN ẢNH GIÁN TIẾP
+      <div class="z-10 max-w-4xl w-full flex flex-col items-center py-4">
+        <p class="font-mono text-brandGold text-xs sm:text-sm tracking-widest uppercase mb-2 sm:mb-3">
+          <i class="fa-solid fa-film mr-1.5"></i>THUYẾT TRÌNH ĐIỆN ẢNH GIÁN TIẾP
         </p>
         
-        <h1 class="font-cinzel text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-wide leading-tight mb-4 drop-shadow-lg">
+        <h1 class="font-cinzel text-2xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-wide leading-tight mb-3 sm:mb-4 drop-shadow-lg px-2">
           CHIẾN TRANH & XUNG ĐỘT <br>
           <span class="text-brandRed">SAU CHIẾN TRANH LẠNH</span>
         </h1>
         
-        <p class="text-white/70 max-w-2xl text-base sm:text-lg mb-8 font-light">
+        <p class="text-white/70 max-w-2xl text-xs sm:text-base mb-6 font-light px-2">
           Phân tích chuyên sâu bối cảnh, nguyên nhân và tác động diện rộng của các cuộc xung đột khu vực & chiến dịch chống khủng bố toàn cầu (Chuyên đề Sử 11 - Kết nối tri thức).
         </p>
 
         <!-- Movie Credits Roll Window -->
-        <div class="w-full max-w-lg h-44 glass-panel rounded-xl border border-white/10 overflow-hidden relative mb-8 shadow-2xl">
-          <div class="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-brandCard to-transparent z-10 pointer-events-none"></div>
-          <div class="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-brandCard to-transparent z-10 pointer-events-none"></div>
+        <div class="w-full max-w-md h-36 sm:h-44 glass-panel rounded-xl border border-white/10 overflow-hidden relative mb-6 shadow-2xl">
+          <div class="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-brandCard to-transparent z-10 pointer-events-none"></div>
+          <div class="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-brandCard to-transparent z-10 pointer-events-none"></div>
           
-          <div class="animate-credits flex flex-col items-center py-6 font-mono text-sm space-y-4">
+          <div class="animate-credits flex flex-col items-center py-4 font-mono text-xs sm:text-sm space-y-3">
             <p class="text-brandGold font-bold tracking-wider">=== BAN XÂY DỰNG CHUYÊN ĐỀ ===</p>
             <div>
               <p class="text-white font-bold">NGUYỄN NHẬT TIẾN</p>
-              <p class="text-white/50 text-xs">Trưởng nhóm & Thuyết minh chính</p>
+              <p class="text-white/50 text-[10px] sm:text-xs">Trưởng nhóm & Thuyết minh chính</p>
             </div>
             <div>
               <p class="text-white font-bold">NGUYỄN VĂN A</p>
-              <p class="text-white/50 text-xs">Nghiên cứu Nội dung SGK Sử 11</p>
+              <p class="text-white/50 text-[10px] sm:text-xs">Nghiên cứu Nội dung SGK Sử 11</p>
             </div>
             <div>
               <p class="text-white font-bold">TRẦN THỊ B</p>
-              <p class="text-white/50 text-xs">Thiết kế Poster & Đồ họa Infographic</p>
+              <p class="text-white/50 text-[10px] sm:text-xs">Thiết kế Poster & Đồ họa Infographic</p>
             </div>
             <div>
               <p class="text-white font-bold">LÊ VĂN C</p>
-              <p class="text-white/50 text-xs">Kỹ thuật Slide & Hiệu ứng Tương tác</p>
+              <p class="text-white/50 text-[10px] sm:text-xs">Kỹ thuật Slide & Hiệu ứng Tương tác</p>
             </div>
-            <p class="text-brandRed text-xs tracking-widest pt-2">BÁM SÁT SÁCH CHUYÊN ĐỀ SỬ 11 (KNTT)</p>
+            <p class="text-brandRed text-[10px] tracking-widest pt-1">BÁM SÁT SÁCH CHUYÊN ĐỀ SỬ 11 (KNTT)</p>
           </div>
         </div>
 
         <!-- Action Button -->
-        <button onclick="nextSlide()" class="hud-glow px-8 py-4 bg-brandRed hover:bg-red-700 text-white font-bold rounded-lg font-mono text-base tracking-wider transition-all transform hover:scale-105 flex items-center gap-3">
+        <button onclick="nextSlide()" class="hud-glow px-6 sm:px-8 py-3 sm:py-4 bg-brandRed hover:bg-red-700 text-white font-bold rounded-lg font-mono text-sm sm:text-base tracking-wider transition-all transform hover:scale-105 flex items-center gap-2.5">
           <span>BẮT ĐẦU TRÌNH CHIẾU</span>
           <i class="fa-solid fa-play text-xs"></i>
         </button>
@@ -217,554 +226,282 @@
     </section>
 
     <!-- SLIDE 2: SECTION 1 - CÁC CUỘC NỘI CHIẾN & XUNG ĐỘT KHU VỰC -->
-    <section class="slide-section w-full h-full flex-col justify-between px-6 md:px-12 py-6 max-w-7xl mx-auto" id="slide-1">
+    <section class="slide-section w-full min-h-[calc(100vh-12rem)] flex-col justify-between px-4 md:px-12 py-2 max-w-7xl mx-auto" id="slide-1">
       <!-- Section Title Header -->
-      <div class="flex justify-between items-end border-b border-white/10 pb-4">
+      <div class="flex justify-between items-end border-b border-white/10 pb-3 mb-4">
         <div>
-          <span class="font-mono text-brandRed text-xs tracking-widest font-bold">MỤC 1 (SGK TRANG 34)</span>
-          <h2 class="font-cinzel text-2xl md:text-4xl font-bold text-white mt-1">
-            Các Cuộc Nội Chiến & Xung Đột Quân Sự Khu Vực
+          <span class="font-mono text-brandRed text-[10px] sm:text-xs tracking-widest font-bold">MỤC 1 (SGK TRANG 34)</span>
+          <h2 class="font-cinzel text-xl sm:text-3xl md:text-4xl font-bold text-white mt-0.5">
+            Các Cuộc Nội Chiến & Xung Đột Khu Vực
           </h2>
         </div>
-        <p class="text-white/50 font-mono text-xs hidden md:block max-w-xs text-right">
-          Trật tự 2 cực I-an-ta sụp đổ kéo theo sự bùng phát của các mâu thuẫn sắc tộc, tôn giáo bị nén chặt.
-        </p>
       </div>
 
-      <!-- Interactive Asymmetrical Grid Layout -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-auto">
-        
+      <!-- Interactive Grid Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 my-auto">
         <!-- Region 1: Ban-căng -->
-        <div class="glass-panel glass-panel-hover rounded-xl p-6 relative group overflow-hidden flex flex-col justify-between">
-          <div class="absolute inset-0 bg-cover bg-center opacity-20 group-hover:opacity-40 transition-opacity duration-500" style="background-image: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=800');"></div>
+        <div class="glass-panel glass-panel-hover rounded-xl p-4 sm:p-6 relative group overflow-hidden flex flex-col justify-between">
           <div class="relative z-10">
-            <div class="flex justify-between items-start mb-4">
-              <span class="px-2 py-1 bg-brandRed/20 text-brandRed font-mono text-xs font-bold rounded border border-brandRed/30">1992 - 1995</span>
-              <i class="fa-solid fa-map-pin text-brandGold text-lg"></i>
+            <div class="flex justify-between items-start mb-2 sm:mb-4">
+              <span class="px-2 py-0.5 bg-brandRed/20 text-brandRed font-mono text-[10px] sm:text-xs font-bold rounded border border-brandRed/30">1992 - 1995</span>
+              <i class="fa-solid fa-map-pin text-brandGold text-base sm:text-lg"></i>
             </div>
-            <h3 class="font-cinzel text-xl font-bold text-white mb-2">Bán Đảo Ban-căng (Balkan)</h3>
-            <p class="text-xs text-brandGold font-mono mb-4">Chiến tranh Bô-xni-a (Bosnia-Herzegovina)</p>
-            <ul class="text-sm text-white/80 space-y-2 font-light">
-              <li class="flex items-start gap-2">
-                <i class="fa-solid fa-angle-right text-brandRed mt-1 text-xs"></i>
+            <h3 class="font-cinzel text-lg sm:text-xl font-bold text-white mb-1">Bán Đảo Ban-căng</h3>
+            <p class="text-[11px] sm:text-xs text-brandGold font-mono mb-2 sm:mb-4">Chiến tranh Bô-xni-a (Bosnia)</p>
+            <ul class="text-xs sm:text-sm text-white/80 space-y-1.5 font-light">
+              <li class="flex items-start gap-1.5">
+                <i class="fa-solid fa-angle-right text-brandRed mt-1 text-[10px]"></i>
                 <span>Xuất phát từ mâu thuẫn sâu sắc giữa các nhóm <strong>sắc tộc và tôn giáo</strong>.</span>
               </li>
-              <li class="flex items-start gap-2">
-                <i class="fa-solid fa-angle-right text-brandRed mt-1 text-xs"></i>
-                <span>Gây thiệt hại to lớn về người và của, khiến khoảng <strong>100.000 người thiệt mạng</strong>.</span>
+              <li class="flex items-start gap-1.5">
+                <i class="fa-solid fa-angle-right text-brandRed mt-1 text-[10px]"></i>
+                <span>Thiệt hại to lớn, khiến khoảng <strong>100.000 người thiệt mạng</strong>.</span>
               </li>
             </ul>
-          </div>
-          <div class="relative z-10 pt-4 mt-4 border-t border-white/10 flex justify-between items-center text-xs font-mono text-white/50">
-            <span>ĐIỂM NÓNG CHÂU ÂU</span>
-            <span class="group-hover:text-brandRed transition-colors">CHI TIẾT <i class="fa-solid fa-arrow-right"></i></span>
           </div>
         </div>
 
         <!-- Region 2: Trung Đông -->
-        <div class="glass-panel glass-panel-hover rounded-xl p-6 relative group overflow-hidden flex flex-col justify-between border-brandRed/30">
-          <div class="absolute inset-0 bg-cover bg-center opacity-25 group-hover:opacity-45 transition-opacity duration-500" style="background-image: url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&q=80&w=800');"></div>
+        <div class="glass-panel glass-panel-hover rounded-xl p-4 sm:p-6 relative group overflow-hidden flex flex-col justify-between border-brandRed/30">
           <div class="relative z-10">
-            <div class="flex justify-between items-start mb-4">
-              <span class="px-2 py-1 bg-brandRed text-white font-mono text-xs font-bold rounded">KÉO DÀI NHIỀU NĂM</span>
-              <i class="fa-solid fa-fire text-brandRed text-lg animate-pulse"></i>
+            <div class="flex justify-between items-start mb-2 sm:mb-4">
+              <span class="px-2 py-0.5 bg-brandRed text-white font-mono text-[10px] sm:text-xs font-bold rounded">KÉO DÀI NHIỀU NĂM</span>
+              <i class="fa-solid fa-fire text-brandRed text-base sm:text-lg animate-pulse"></i>
             </div>
-            <h3 class="font-cinzel text-xl font-bold text-white mb-2">Khu Vực Trung Đông</h3>
-            <p class="text-xs text-brandRed font-mono mb-4">Xung đột I-xra-en & Pa-le-xtin (Dải Ga-da)</p>
-            <ul class="text-sm text-white/80 space-y-2 font-light">
-              <li class="flex items-start gap-2">
-                <i class="fa-solid fa-angle-right text-brandRed mt-1 text-xs"></i>
-                <span>Tiềm ẩn nguy cơ bùng phát bạo lực do mâu thuẫn <strong>tôn giáo, sắc tộc, lãnh thổ</strong> lịch sử.</span>
+            <h3 class="font-cinzel text-lg sm:text-xl font-bold text-white mb-1">Khu Vực Trung Đông</h3>
+            <p class="text-[11px] sm:text-xs text-brandRed font-mono mb-2 sm:mb-4">I-xra-en & Pa-le-xtin (Dải Ga-da)</p>
+            <ul class="text-xs sm:text-sm text-white/80 space-y-1.5 font-light">
+              <li class="flex items-start gap-1.5">
+                <i class="fa-solid fa-angle-right text-brandRed mt-1 text-[10px]"></i>
+                <span>Mâu thuẫn dai dẳng về <strong>tôn giáo, sắc tộc, lãnh thổ</strong> lịch sử.</span>
               </li>
-              <li class="flex items-start gap-2">
-                <i class="fa-solid fa-angle-right text-brandRed mt-1 text-xs"></i>
-                <span>Tiêu biểu là xung đột dai dẳng I-xra-en - Pa-le-xtin gây hậu quả nặng nề cho cả 2 bên.</span>
+              <li class="flex items-start gap-1.5">
+                <i class="fa-solid fa-angle-right text-brandRed mt-1 text-[10px]"></i>
+                <span>Xung đột đẫm máu I-xra-en - Pa-le-xtin gây hậu quả nặng nề.</span>
               </li>
             </ul>
-          </div>
-          <div class="relative z-10 pt-4 mt-4 border-t border-white/10 flex justify-between items-center text-xs font-mono text-white/50">
-            <span>BÂT ỔN THƯỜNG TRỰC</span>
-            <span class="group-hover:text-brandRed transition-colors">CHI TIẾT <i class="fa-solid fa-arrow-right"></i></span>
           </div>
         </div>
 
         <!-- Region 3: Châu Phi -->
-        <div class="glass-panel glass-panel-hover rounded-xl p-6 relative group overflow-hidden flex flex-col justify-between">
-          <div class="absolute inset-0 bg-cover bg-center opacity-20 group-hover:opacity-40 transition-opacity duration-500" style="background-image: url('https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800');"></div>
+        <div class="glass-panel glass-panel-hover rounded-xl p-4 sm:p-6 relative group overflow-hidden flex flex-col justify-between">
           <div class="relative z-10">
-            <div class="flex justify-between items-start mb-4">
-              <span class="px-2 py-1 bg-brandGold/20 text-brandGold font-mono text-xs font-bold rounded border border-brandGold/30">NỘI CHIẾN DIỆN RỘNG</span>
-              <i class="fa-solid fa-skull-crossbones text-brandGold text-lg"></i>
+            <div class="flex justify-between items-start mb-2 sm:mb-4">
+              <span class="px-2 py-0.5 bg-brandGold/20 text-brandGold font-mono text-[10px] sm:text-xs font-bold rounded border border-brandGold/30">NỘI CHIẾN DIỆN RỘNG</span>
+              <i class="fa-solid fa-skull-crossbones text-brandGold text-base sm:text-lg"></i>
             </div>
-            <h3 class="font-cinzel text-xl font-bold text-white mb-2">Lục Địa Châu Phi</h3>
-            <p class="text-xs text-brandGold font-mono mb-4">Li-bi, Xô-ma-li, Xư-đăng...</p>
-            <ul class="text-sm text-white/80 space-y-2 font-light">
-              <li class="flex items-start gap-2">
-                <i class="fa-solid fa-angle-right text-brandRed mt-1 text-xs"></i>
-                <span>Các cuộc xung đột, nội chiến tiếp tục kéo dài dai dẳng từ sau Chiến tranh Lạnh.</span>
+            <h3 class="font-cinzel text-lg sm:text-xl font-bold text-white mb-1">Lục Địa Châu Phi</h3>
+            <p class="text-[11px] sm:text-xs text-brandGold font-mono mb-2 sm:mb-4">Li-bi, Xô-ma-li, Xư-đăng...</p>
+            <ul class="text-xs sm:text-sm text-white/80 space-y-1.5 font-light">
+              <li class="flex items-start gap-1.5">
+                <i class="fa-solid fa-angle-right text-brandRed mt-1 text-[10px]"></i>
+                <span>Nội chiến tiếp tục kéo dài dai dẳng từ sau Chiến tranh Lạnh.</span>
               </li>
-              <li class="flex items-start gap-2">
-                <i class="fa-solid fa-angle-right text-brandRed mt-1 text-xs"></i>
-                <span>Gây ra tình trạng <strong>an ninh bất ổn, khủng hoảng nhân đạo, dịch bệnh và đói nghèo</strong>.</span>
+              <li class="flex items-start gap-1.5">
+                <i class="fa-solid fa-angle-right text-brandRed mt-1 text-[10px]"></i>
+                <span>Gây ra <strong>bất ổn an ninh, khủng hoảng nhân đạo, đói nghèo</strong>.</span>
               </li>
             </ul>
           </div>
-          <div class="relative z-10 pt-4 mt-4 border-t border-white/10 flex justify-between items-center text-xs font-mono text-white/50">
-            <span>KHỦNG HOẢNG NHÂN ĐẠO</span>
-            <span class="group-hover:text-brandRed transition-colors">CHI TIẾT <i class="fa-solid fa-arrow-right"></i></span>
-          </div>
         </div>
-
       </div>
 
       <!-- Bottom Interactive Question Prompt (From SGK) -->
-      <div class="glass-panel rounded-lg p-4 flex items-center justify-between border-l-4 border-brandGold">
-        <div class="flex items-center gap-3">
-          <i class="fa-solid fa-circle-question text-brandGold text-xl"></i>
-          <span class="text-sm font-semibold text-white">Câu hỏi SGK: Vì sao sau Chiến tranh Lạnh, các cuộc nội chiến, xung đột khu vực vẫn tiếp diễn?</span>
+      <div class="glass-panel rounded-lg p-3 sm:p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-l-4 border-brandGold mt-4">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-circle-question text-brandGold text-lg shrink-0"></i>
+          <span class="text-xs sm:text-sm font-semibold text-white">Vì sao sau Chiến tranh Lạnh, các cuộc nội chiến, xung đột vẫn tiếp diễn?</span>
         </div>
-        <button onclick="toggleAnswerModal()" class="px-4 py-2 bg-white/10 hover:bg-white/20 text-xs font-mono text-brandGold rounded transition-colors">
+        <button onclick="toggleAnswerModal()" class="w-full sm:w-auto px-3 py-1.5 bg-white/10 hover:bg-white/20 text-[11px] font-mono text-brandGold rounded transition-colors text-center">
           XEM GIẢI THÍCH SGK
         </button>
       </div>
     </section>
 
     <!-- SLIDE 3: SECTION 2 - SỰ KIỆN 11-9-2001 & CUỘC CHIẾN CHỐNG KHỦNG BỐ -->
-    <section class="slide-section w-full h-full flex-col justify-between px-6 md:px-12 py-6 max-w-7xl mx-auto" id="slide-2">
+    <section class="slide-section w-full min-h-[calc(100vh-12rem)] flex-col justify-between px-4 md:px-12 py-2 max-w-7xl mx-auto" id="slide-2">
       <!-- Section Title Header -->
-      <div class="flex justify-between items-end border-b border-white/10 pb-3">
+      <div class="flex justify-between items-end border-b border-white/10 pb-2 mb-4">
         <div>
-          <span class="font-mono text-brandRed text-xs tracking-widest font-bold">MỤC 2 (SGK TRANG 34-35)</span>
-          <h2 class="font-cinzel text-2xl md:text-4xl font-bold text-white mt-1">
-            Vụ Tấn Công Khủng Bố 11-9-2001 & Cuộc Chiến Chống Khủng Bố Của Mỹ
+          <span class="font-mono text-brandRed text-[10px] sm:text-xs tracking-widest font-bold">MỤC 2 (SGK TRANG 34-35)</span>
+          <h2 class="font-cinzel text-xl sm:text-3xl md:text-4xl font-bold text-white mt-0.5">
+            Tấn Công Khủng Bố 11-9-2001 & Phản Ứng Của Mỹ
           </h2>
-        </div>
-        <!-- Sound Wave Visualizer Mock -->
-        <div class="hidden lg:flex items-center gap-1 h-8">
-          <div class="w-1 bg-brandRed bar" style="animation-delay: 0.1s"></div>
-          <div class="w-1 bg-brandRed bar" style="animation-delay: 0.3s"></div>
-          <div class="w-1 bg-brandRed bar" style="animation-delay: 0.2s"></div>
-          <div class="w-1 bg-brandRed bar" style="animation-delay: 0.4s"></div>
-          <div class="w-1 bg-brandRed bar" style="animation-delay: 0.5s"></div>
-          <span class="font-mono text-[10px] text-brandRed ml-2 uppercase">Audio Transcript Active</span>
         </div>
       </div>
 
-      <!-- Main Interactive Content Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-auto">
-        
-        <!-- Left: Event Timeline & Details (7 cols) -->
-        <div class="lg:col-span-7 flex flex-col justify-between space-y-4">
-          <!-- Main Event Card -->
-          <div class="glass-panel p-5 rounded-xl border-l-4 border-brandRed relative">
-            <div class="flex justify-between items-center mb-2">
-              <span class="font-mono text-xs text-brandRed font-bold"><i class="fa-solid fa-plane-triangle mr-2"></i>SỰ KIỆN LỊCH SỬ</span>
-              <span class="font-mono text-xs text-white/50">SÁNG 11 - 9 - 2001</span>
+      <!-- Content Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 my-auto">
+        <!-- Left: Event Timeline & Details -->
+        <div class="lg:col-span-7 space-y-3">
+          <div class="glass-panel p-4 rounded-xl border-l-4 border-brandRed">
+            <div class="flex justify-between items-center mb-1.5">
+              <span class="font-mono text-[11px] text-brandRed font-bold"><i class="fa-solid fa-plane-slash mr-1"></i>SỰ KIỆN 11 - 9 - 2001</span>
             </div>
-            <p class="text-sm text-white/90 leading-relaxed font-light mb-3">
-              Các đối tượng khủng bố thuộc tổ chức <strong>An-kê-đa (Al-Qaeda)</strong> cướp 4 máy bay dân dụng, đâm vào các trung tâm quan trọng của nước Mỹ (Tháp đôi WTC, Bộ Quốc phòng).
+            <p class="text-xs sm:text-sm text-white/90 leading-relaxed font-light mb-3">
+              Tổ chức <strong>An-kê-đa (Al-Qaeda)</strong> cướp 4 máy bay dân dụng, đâm vào trung tâm quan trọng tại Mỹ (Tháp đôi WTC, Bộ Quốc phòng).
             </p>
-            <!-- Animated Counters -->
             <div class="grid grid-cols-3 gap-2 pt-2 border-t border-white/10 text-center font-mono">
-              <div class="bg-black/30 p-2 rounded">
-                <div class="text-xl font-extrabold text-brandRed" id="count-1">~3.000</div>
-                <div class="text-[10px] text-white/50">NGƯỜI THIỆT MẠNG</div>
+              <div class="bg-black/30 p-1.5 rounded">
+                <div class="text-base sm:text-xl font-extrabold text-brandRed">~3.000</div>
+                <div class="text-[9px] sm:text-[10px] text-white/50">NGƯỜI CHẾT</div>
               </div>
-              <div class="bg-black/30 p-2 rounded">
-                <div class="text-xl font-extrabold text-brandGold" id="count-2">&gt;6.000</div>
-                <div class="text-[10px] text-white/50">NGƯỜI BỊ THƯƠNG</div>
+              <div class="bg-black/30 p-1.5 rounded">
+                <div class="text-base sm:text-xl font-extrabold text-brandGold">&gt;6.000</div>
+                <div class="text-[9px] sm:text-[10px] text-white/50">BỊ THƯƠNG</div>
               </div>
-              <div class="bg-black/30 p-2 rounded">
-                <div class="text-xl font-extrabold text-white" id="count-3">3.000 TỶ</div>
-                <div class="text-[10px] text-white/50">USD THIỆT HẠI</div>
+              <div class="bg-black/30 p-1.5 rounded">
+                <div class="text-base sm:text-xl font-extrabold text-white">3.000 TỶ</div>
+                <div class="text-[9px] sm:text-[10px] text-white/50">USD THIỆT HẠI</div>
               </div>
             </div>
           </div>
 
-          <!-- Causes Card -->
-          <div class="glass-panel p-5 rounded-xl">
-            <h4 class="font-cinzel text-base font-bold text-brandGold mb-2 flex items-center gap-2">
-              <i class="fa-solid fa-circle-exclamation"></i> Nguyên Nhân Xuất Phát
+          <div class="glass-panel p-3.5 rounded-xl">
+            <h4 class="font-cinzel text-xs sm:text-sm font-bold text-brandGold mb-1.5">
+              <i class="fa-solid fa-circle-exclamation mr-1"></i> Nguyên Nhân Sự Kiện
             </h4>
-            <ul class="text-xs text-white/80 space-y-2">
-              <li class="flex items-start gap-2">
-                <span class="text-brandRed font-mono font-bold">•</span>
-                <span>Tâm lý chống Mỹ và sự bất bình của các lực lượng Hồi giáo cực đoan.</span>
+            <ul class="text-xs text-white/80 space-y-1">
+              <li class="flex items-start gap-1.5">
+                <span class="text-brandRed font-bold">•</span>
+                <span>Tâm lý chống Mỹ từ lực lượng Hồi giáo cực đoan.</span>
               </li>
-              <li class="flex items-start gap-2">
-                <span class="text-brandRed font-mono font-bold">•</span>
-                <span>Chính sách <strong>bá quyền</strong> của Mỹ: đặc biệt là chính sách thiên vị, ủng hộ I-xra-en, phân biệt đối xử với Pa-le-xtin và các nước A-rập.</span>
+              <li class="flex items-start gap-1.5">
+                <span class="text-brandRed font-bold">•</span>
+                <span>Chính sách <strong>bá quyền</strong> của Mỹ: thiên vị I-xra-en, phân biệt đối xử với Pa-le-xtin & các nước A-rập.</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <!-- Right: US Response & Global Impact (5 cols) -->
-        <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
-          <!-- US Anti-Terror War Card -->
-          <div class="glass-panel p-5 rounded-xl border border-white/10">
-            <h4 class="font-cinzel text-base font-bold text-white mb-2 flex items-center gap-2">
-              <i class="fa-solid fa-shield-halved text-brandRed"></i> Cuộc Chiến Chống Khủng Bố
+        <!-- Right: US Response & Global Impact -->
+        <div class="lg:col-span-5 space-y-3">
+          <div class="glass-panel p-4 rounded-xl border border-white/10">
+            <h4 class="font-cinzel text-xs sm:text-sm font-bold text-white mb-2">
+              <i class="fa-solid fa-shield-halved text-brandRed mr-1"></i> Phản Ứng Của Mỹ
             </h4>
-            <p class="text-xs text-white/80 leading-relaxed mb-3">
-              Chính quyền Tổng thống <strong>G. Bu-sơ (George W. Bush)</strong> xác định khủng bố là kẻ thù hàng đầu, sử dụng ưu thế quân sự "đánh phủ đầu":
+            <p class="text-xs text-white/80 mb-2">
+              Chính quyền Tổng thống <strong>G. Bu-sơ (George W. Bush)</strong> phát động cuộc chiến chống khủng bố "đánh phủ đầu":
             </p>
-            <div class="space-y-2 font-mono text-xs">
-              <div class="p-2 bg-white/5 rounded border-l-2 border-brandRed flex justify-between">
+            <div class="space-y-1.5 font-mono text-xs">
+              <div class="p-1.5 bg-white/5 rounded border-l-2 border-brandRed flex justify-between">
                 <span>Chiến tranh Áp-ga-ni-stan</span>
                 <span class="text-brandGold font-bold">NĂM 2001</span>
               </div>
-              <div class="p-2 bg-white/5 rounded border-l-2 border-brandRed flex justify-between">
+              <div class="p-1.5 bg-white/5 rounded border-l-2 border-brandRed flex justify-between">
                 <span>Chiến tranh I-rắc</span>
                 <span class="text-brandGold font-bold">NĂM 2003</span>
               </div>
             </div>
           </div>
 
-          <!-- Double-Sided Impact Card -->
-          <div class="glass-panel p-5 rounded-xl">
-            <h4 class="font-cinzel text-base font-bold text-brandGold mb-3">Đánh Giá Tác Động Hai Mặt</h4>
-            <div class="grid grid-cols-2 gap-3 text-xs">
-              <div class="p-3 bg-emerald-950/30 border border-emerald-500/30 rounded-lg">
-                <p class="font-bold text-emerald-400 mb-1"><i class="fa-solid fa-check mr-1"></i>TÍCH CỰC</p>
-                <p class="text-white/70">Tiêu diệt được một số lãnh đạo cao cấp của tổ chức khủng bố quốc tế.</p>
+          <div class="glass-panel p-3.5 rounded-xl">
+            <h4 class="font-cinzel text-xs sm:text-sm font-bold text-brandGold mb-2">Đánh Giá Tác Động</h4>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div class="p-2 bg-emerald-950/30 border border-emerald-500/30 rounded-lg">
+                <p class="font-bold text-emerald-400 text-[10px] mb-0.5">TÍCH CỰC</p>
+                <p class="text-white/70 text-[11px]">Tiêu diệt một số trùm khủng bố.</p>
               </div>
-              <div class="p-3 bg-rose-950/30 border border-rose-500/30 rounded-lg">
-                <p class="font-bold text-rose-400 mb-1"><i class="fa-solid fa-xmark mr-1"></i>HẠN CHẾ</p>
-                <p class="text-white/70">Gây tổn thất lớn; tình trạng khủng bố lan rộng ra nhiều khu vực khác.</p>
+              <div class="p-2 bg-rose-950/30 border border-rose-500/30 rounded-lg">
+                <p class="font-bold text-rose-400 text-[10px] mb-0.5">HẠN CHẾ</p>
+                <p class="text-white/70 text-[11px]">Tổn thất lớn; khủng bố lan rộng hơn.</p>
               </div>
             </div>
           </div>
         </div>
-
-      </div>
-
-      <!-- Bottom Interactive Trigger for Audio Transcript -->
-      <div class="w-full flex justify-end">
-        <span class="text-xs font-mono text-white/40">Bấm mũi tên phải (&rarr;) để sang phần Poster Tổng Kết</span>
       </div>
     </section>
 
     <!-- SLIDE 4: CONCLUSION & POSTER SHOWCASE -->
-    <section class="slide-section w-full h-full flex-col justify-between px-6 md:px-12 py-6 max-w-7xl mx-auto" id="slide-3">
+    <section class="slide-section w-full min-h-[calc(100vh-12rem)] flex-col justify-between px-4 md:px-12 py-2 max-w-7xl mx-auto" id="slide-3">
       <!-- Section Title Header -->
-      <div class="flex justify-between items-end border-b border-white/10 pb-3">
+      <div class="flex justify-between items-end border-b border-white/10 pb-2 mb-3">
         <div>
-          <span class="font-mono text-brandGold text-xs tracking-widest font-bold">TỔNG KẾT & LIÊN HỆ</span>
-          <h2 class="font-cinzel text-2xl md:text-4xl font-bold text-white mt-1">
-            Poster Tổng Hợp & Bài Học Lịch Sử
+          <span class="font-mono text-brandGold text-[10px] sm:text-xs tracking-widest font-bold">TỔNG KẾT & LIÊN HỆ</span>
+          <h2 class="font-cinzel text-xl sm:text-3xl md:text-4xl font-bold text-white mt-0.5">
+            Poster Tổng Hợp & Bài Học
           </h2>
         </div>
-        <button onclick="togglePosterModal()" class="hud-glow px-4 py-2 bg-brandGold text-brandDark font-bold rounded text-xs font-mono flex items-center gap-2">
-          <i class="fa-solid fa-expand"></i> MỞ POSTER KHỔ LỚN
+        <button onclick="togglePosterModal()" class="hud-glow px-2.5 py-1.5 bg-brandGold text-brandDark font-bold rounded text-[11px] font-mono flex items-center gap-1">
+          <i class="fa-solid fa-expand"></i> <span class="hidden sm:inline">MỞ POSTER KHỔ LỚN</span>
         </button>
       </div>
 
-      <!-- Content Grid: Left Lessons, Right Poster Preview -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 my-auto">
-        
-        <!-- Left: Lessons & Vietnam Perspective (6 cols) -->
-        <div class="lg:col-span-6 space-y-4 flex flex-col justify-center">
-          <div class="glass-panel p-5 rounded-xl border-l-4 border-brandGold">
-            <h3 class="font-cinzel text-lg font-bold text-white mb-2 flex items-center gap-2">
-              <i class="fa-solid fa-scale-balanced text-brandGold"></i> Bài Học Về Hòa Bình & An Ninh
+      <!-- Content Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 my-auto">
+        <div class="lg:col-span-6 space-y-3">
+          <div class="glass-panel p-4 rounded-xl border-l-4 border-brandGold">
+            <h3 class="font-cinzel text-sm sm:text-base font-bold text-white mb-2">
+              <i class="fa-solid fa-scale-balanced text-brandGold mr-1"></i> Bài Học Về Hòa Bình
             </h3>
-            <ul class="text-xs md:text-sm text-white/80 space-y-2 font-light">
-              <li class="flex items-start gap-2">
-                <i class="fa-solid fa-check text-brandGold mt-1"></i>
-                <span>Tôn trọng tuyệt đối <strong>Luật pháp quốc tế & Hiến chương Liên Hợp Quốc</strong>.</span>
+            <ul class="text-xs text-white/80 space-y-1.5 font-light">
+              <li class="flex items-start gap-1.5">
+                <i class="fa-solid fa-check text-brandGold mt-0.5"></i>
+                <span>Tôn trọng <strong>Luật pháp quốc tế & Hiến chương Liên Hợp Quốc</strong>.</span>
               </li>
-              <li class="flex items-start gap-2">
-                <i class="fa-solid fa-check text-brandGold mt-1"></i>
-                <span>Giải quyết mọi tranh chấp lãnh thổ, sắc tộc bằng <strong>biện pháp hòa bình, thương lượng đối thoại</strong>.</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <i class="fa-solid fa-check text-brandGold mt-1"></i>
-                <span>Không can thiệp vào công việc nội bộ và không áp đặt bá quyền quân sự.</span>
+              <li class="flex items-start gap-1.5">
+                <i class="fa-solid fa-check text-brandGold mt-0.5"></i>
+                <span>Giải quyết mọi tranh chấp bằng <strong>biện pháp hòa bình, thương lượng</strong>.</span>
               </li>
             </ul>
           </div>
 
-          <div class="glass-panel p-5 rounded-xl border-l-4 border-emerald-500">
-            <h3 class="font-cinzel text-lg font-bold text-white mb-2 flex items-center gap-2">
-              <i class="fa-solid fa-flag text-emerald-400"></i> Liên Hệ Thực Tác Việt Nam
+          <div class="glass-panel p-4 rounded-xl border-l-4 border-emerald-500">
+            <h3 class="font-cinzel text-sm sm:text-base font-bold text-white mb-1.5">
+              <i class="fa-solid fa-flag text-emerald-400 mr-1"></i> Liên Hệ Việt Nam
             </h3>
-            <p class="text-xs md:text-sm text-white/80 leading-relaxed">
-              Việt Nam luôn kiên định đường lối đối ngoại độc lập, tự chủ, hòa bình, hữu nghị; chủ động tham gia lực lượng <strong>Gìn giữ hòa bình Liên Hợp Quốc (UN Peacekeeping)</strong>, đóng góp tích cực cho an ninh toàn cầu.
+            <p class="text-xs text-white/80 leading-relaxed">
+              Việt Nam kiên định đường lối hòa bình, hữu nghị; tích cực tham gia lực lượng <strong>Gìn giữ hòa bình LHQ (UN Peacekeeping)</strong>.
             </p>
           </div>
         </div>
 
-        <!-- Right: Interactive Infographic Poster Card (6 cols) -->
         <div class="lg:col-span-6 flex justify-center items-center">
-          <div class="w-full max-w-md glass-panel p-6 rounded-2xl border-2 border-brandGold/40 relative shadow-2xl group cursor-pointer" onclick="togglePosterModal()">
-            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-brandGold text-brandDark font-mono font-extrabold text-[10px] uppercase rounded-full tracking-wider">
-              ẤN PHẨM TRUYỀN THÔNG (POSTER)
-            </div>
-
-            <!-- Poster Layout Simulation -->
-            <div class="bg-brandDark p-4 rounded-xl border border-white/10 text-center space-y-4">
-              <div class="border-b border-brandRed/40 pb-2">
-                <p class="font-mono text-[10px] text-brandRed">LỊCH SỬ 11 • CHUYÊN ĐỀ 3</p>
-                <h4 class="font-cinzel text-lg font-bold text-white">XUNG ĐỘT SAU CHIẾN TRANH LẠNH</h4>
-              </div>
-
-              <div class="grid grid-cols-2 gap-2 text-left font-mono text-[10px]">
-                <div class="bg-white/5 p-2 rounded">
-                  <p class="text-brandGold font-bold">1. NỘI CHIẾN KHU VỰC</p>
-                  <p class="text-white/60">Ban-căng, Trung Đông, Châu Phi</p>
-                </div>
-                <div class="bg-white/5 p-2 rounded">
-                  <p class="text-brandRed font-bold">2. KHỦNG BỐ 11-9</p>
-                  <p class="text-white/60">Al-Qaeda & Cuộc chiến của Mỹ</p>
-                </div>
-              </div>
-
-              <div class="p-3 bg-brandRed/10 border border-brandRed/30 rounded text-xs text-brandGold font-mono">
-                "HÒA BÌNH LÀ NỀN TẢNG CHO SỰ PHÁT TRIỂN BỀN VỮNG TOÀN CẦU"
-              </div>
-
-              <div class="text-[9px] font-mono text-white/40 pt-1">
-                Bấm vào đây để phóng to Poster xem toàn màn hình
-              </div>
+          <div class="w-full max-w-sm glass-panel p-4 rounded-2xl border border-brandGold/40 text-center space-y-3 cursor-pointer" onclick="togglePosterModal()">
+            <span class="px-3 py-0.5 bg-brandGold text-brandDark font-mono font-extrabold text-[9px] uppercase rounded-full">
+              ẤN PHẨM POSTER TRUYỀN THÔNG
+            </span>
+            <div class="bg-brandDark p-3 rounded-xl border border-white/10 space-y-2">
+              <h4 class="font-cinzel text-sm font-bold text-white">XUNG ĐỘT SAU CHIẾN TRANH LẠNH</h4>
+              <p class="text-[10px] font-mono text-brandGold">BẤM VÀO ĐỂ XEM POSTER CHI TIẾT</p>
             </div>
           </div>
         </div>
-
-      </div>
-
-      <!-- Action Buttons Footer -->
-      <div class="flex justify-between items-center border-t border-white/10 pt-3">
-        <button onclick="goToSlide(0)" class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-mono text-xs rounded transition-colors flex items-center gap-2">
-          <i class="fa-solid fa-rotate-left"></i> TRỜ VỀ SLIDE ĐẦU
-        </button>
-        <span class="font-mono text-xs text-white/40">CẢM ƠN THẦY VÀ CÁC BẠN ĐÃ THEO DÕI!</span>
       </div>
     </section>
 
   </main>
 
   <!-- BOTTOM NAVIGATION CONTROL BAR -->
-  <footer class="fixed bottom-0 left-0 right-0 z-50 px-6 py-3 bg-brandDark/90 border-t border-white/10 flex justify-between items-center font-mono text-xs">
-    <div class="text-white/40 hidden sm:block">
-      Dùng phím <kbd class="px-1.5 py-0.5 bg-white/10 text-white rounded">←</kbd> <kbd class="px-1.5 py-0.5 bg-white/10 text-white rounded">→</kbd> hoặc cuộn chuột để chuyển Slide
-    </div>
+  <footer class="fixed bottom-0 left-0 right-0 z-50 px-4 py-2.5 bg-brandDark/95 border-t border-white/10 flex justify-between items-center font-mono text-xs">
+    <button onclick="prevSlide()" class="px-3 py-1.5 bg-white/10 active:bg-brandRed text-white rounded transition-colors flex items-center gap-1.5">
+      <i class="fa-solid fa-chevron-left text-[10px]"></i> TRƯỚC
+    </button>
 
-    <div class="flex items-center gap-4 mx-auto sm:mx-0">
-      <button onclick="prevSlide()" class="px-4 py-1.5 bg-white/10 hover:bg-brandRed text-white rounded transition-colors flex items-center gap-2">
-        <i class="fa-solid fa-chevron-left"></i> TRƯỚC
-      </button>
-      <span class="text-brandGold font-bold" id="slide-num-indicator">01 / 04</span>
-      <button onclick="nextSlide()" class="px-4 py-1.5 bg-brandRed hover:bg-red-700 text-white rounded transition-colors flex items-center gap-2">
-        TIẾP <i class="fa-solid fa-chevron-right"></i>
-      </button>
-    </div>
+    <span class="text-brandGold font-bold text-xs" id="slide-num-indicator">01 / 04</span>
+
+    <button onclick="nextSlide()" class="px-4 py-1.5 bg-brandRed active:bg-red-700 text-white rounded transition-colors flex items-center gap-1.5">
+      TIẾP <i class="fa-solid fa-chevron-right text-[10px]"></i>
+    </button>
   </footer>
 
-  <!-- MODAL 1: SGK QUESTION ANSWER -->
-  <div id="modal-answer" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="glass-panel max-w-xl w-full p-6 rounded-2xl border border-brandGold/40 relative">
-      <button onclick="toggleAnswerModal()" class="absolute top-4 right-4 text-white/60 hover:text-white text-lg">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-      <h3 class="font-cinzel text-xl font-bold text-brandGold mb-4 flex items-center gap-2">
-        <i class="fa-solid fa-lightbulb"></i> Hướng Dẫn Trả Lời SGK Trang 34
-      </h3>
-      <div class="text-sm text-white/80 space-y-3 font-light leading-relaxed">
-        <p><strong>Câu hỏi:</strong> Vì sao sau Chiến tranh Lạnh, các cuộc nội chiến, xung đột quân sự khu vực vẫn tiếp diễn?</p>
-        <p><strong>Trả lời chuẩn nội dung bài học:</strong></p>
-        <ul class="list-disc pl-5 space-y-1 text-xs">
-          <li><strong>Mâu thuẫn lịch sử bùng phát:</strong> Việc Trật tự hai cực I-an-ta sụp đổ làm trật tự cũ biến mất, các mâu thuẫn về sắc tộc, tôn giáo, lãnh thổ vốn bị đè nén trong thời kỳ Chiến tranh Lạnh nay có cơ hội bùng phát.</li>
-          <li><strong>Chính trị trung ương suy yếu:</strong> Ở một số quốc gia, chính quyền trung ương suy yếu dẫn đến các lực lượng ly khai, phiến quân nổi dậy tranh giành quyền lực.</li>
-          <li><strong>Sự can thiệp của cường quốc:</strong> Các cuộc xung đột khu vực thường có sự can thiệp trực tiếp hoặc gián tiếp từ các lực lượng và cường quốc bên ngoài vì lợi ích chiến lược.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL 2: HIGH-RES POSTER SHOWCASE -->
-  <div id="modal-poster" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-lg hidden items-center justify-center p-4">
-    <div class="max-w-3xl w-full glass-panel p-8 rounded-3xl border-2 border-brandGold relative max-h-[90vh] overflow-y-auto">
-      <button onclick="togglePosterModal()" class="absolute top-4 right-4 text-white/60 hover:text-white text-2xl">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-
-      <!-- Poster Canvas Content -->
-      <div class="text-center space-y-6">
-        <div class="border-b-2 border-brandRed pb-4">
-          <p class="font-mono text-xs text-brandRed tracking-widest font-bold">ẤN PHẨM TRUYỀN THÔNG LỊCH SỬ SGK LỚP 11</p>
-          <h2 class="font-cinzel text-3xl md:text-4xl font-extrabold text-white mt-1">
-            CHIẾN TRANH & XUNG ĐỘT QUÂN SỰ <br>SAU CHIẾN TRANH LẠNH
-          </h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-          <div class="bg-brandDark/80 p-4 rounded-xl border border-white/10">
-            <h4 class="font-mono font-bold text-brandGold text-sm mb-2">1. XUNG ĐỘT KHU VỰC</h4>
-            <p class="text-xs text-white/70 leading-relaxed">
-              • Ban-căng: Chiến tranh Bosnia (100.000 người chết).<br>
-              • Trung Đông: Israel - Palestine gay gắt.<br>
-              • Châu Phi: Nội chiến Libi, Xô-ma-li, Xư-đăng gây khủng hoảng nhân đạo.
-            </p>
-          </div>
-          <div class="bg-brandDark/80 p-4 rounded-xl border border-white/10">
-            <h4 class="font-mono font-bold text-brandRed text-sm mb-2">2. KHỦNG BỐ 11-9 & PHẢN ỨNG MỸ</h4>
-            <p class="text-xs text-white/70 leading-relaxed">
-              • Al-Qaeda tấn công Mỹ làm 3.000 người chết.<br>
-              • Mỹ đánh phủ đầu ở Afghanistan (2001) & Iraq (2003).<br>
-              • Tiêu diệt trùm khủng bố nhưng xung đột lan rộng.
-            </p>
-          </div>
-        </div>
-
-        <div class="p-4 bg-brandRed/20 border border-brandRed rounded-xl text-brandGold font-mono text-sm font-bold">
-          THÔNG ĐIỆP: "GIẢI QUYẾT TRANH CHẤP BẰNG HÒA BÌNH & LUẬT PHÁP QUỐC TẾ"
-        </div>
-
-        <div class="flex justify-between items-center text-xs font-mono text-white/40 pt-4 border-t border-white/10">
-          <span>THIẾT KẾ BỞI: NHÓM HỌC SINH LỊCH SỬ 11</span>
-          <span>SÁCH CHUYÊN ĐỀ - KẾT NỐI TRI THỨC</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- JAVASCRIPT LOGIC -->
+  <!-- TOUCH SWIPE SUPPORT FOR MOBILE -->
   <script>
-    let currentSlide = 0;
-    const totalSlides = 4;
-    let isAudioPlaying = false;
-    let audioContext = null;
+    let touchstartX = 0;
+    let touchendX = 0;
 
-    // Slide Navigation Function
-    function showSlide(index) {
-      if (index < 0 || index >= totalSlides) return;
-      
-      // Hide all slides
-      document.querySelectorAll('.slide-section').forEach((slide, idx) => {
-        slide.classList.remove('active');
-      });
+    document.addEventListener('touchstart', e => {
+      touchstartX = e.changedTouches[0].screenX;
+    }, false);
 
-      // Show current slide
-      const targetSlide = document.getElementById(`slide-${index}`);
-      if (targetSlide) {
-        targetSlide.classList.add('active');
-      }
+    document.addEventListener('touchend', e => {
+      touchendX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, false);
 
-      // Update Nav Dots
-      document.querySelectorAll('.nav-dot').forEach((dot, idx) => {
-        if (idx === index) {
-          dot.className = "nav-dot px-3 py-1 rounded bg-brandRed text-white font-bold transition-all";
-        } else {
-          dot.className = "nav-dot px-3 py-1 rounded bg-white/10 text-white/60 hover:bg-white/20 transition-all";
-        }
-      });
-
-      // Update Footer Indicator
-      document.getElementById('slide-num-indicator').innerText = `0${index + 1} / 04`;
-      currentSlide = index;
-
-      // Play HUD Click Beep sound if audio enabled
-      if (isAudioPlaying) playBeepSound();
-    }
-
-    function nextSlide() {
-      if (currentSlide < totalSlides - 1) {
-        showSlide(currentSlide + 1);
-      }
-    }
-
-    function prevSlide() {
-      if (currentSlide > 0) {
-        showSlide(currentSlide - 1);
-      }
-    }
-
-    function goToSlide(index) {
-      showSlide(index);
-    }
-
-    // Keyboard Shortcuts
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight' || e.key === 'Space') {
-        nextSlide();
-      } else if (e.key === 'ArrowLeft') {
-        prevSlide();
-      }
-    });
-
-    // Mouse Scroll Wheel Navigation
-    let isScrolling = false;
-    window.addEventListener('wheel', (e) => {
-      if (isScrolling) return;
-      isScrolling = true;
-      if (e.deltaY > 0) {
-        nextSlide();
-      } else {
-        prevSlide();
-      }
-      setTimeout(() => { isScrolling = false; }, 800);
-    });
-
-    // Modal Toggles
-    function toggleAnswerModal() {
-      const modal = document.getElementById('modal-answer');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-
-    function togglePosterModal() {
-      const modal = document.getElementById('modal-poster');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
-
-    // Fullscreen Toggle
-    function toggleFullscreen() {
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
-      } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        }
-      }
-    }
-
-    // Web Audio Synthesizer for HUD Sound Effects (No external MP3 required)
-    function toggleAudioSimulation() {
-      isAudioPlaying = !isAudioPlaying;
-      const icon = document.getElementById('audio-icon');
-      const text = document.getElementById('audio-text');
-
-      if (isAudioPlaying) {
-        icon.className = "fa-solid fa-volume-high text-brandGold";
-        text.innerText = "ÂM THANH BẬT";
-        playBeepSound();
-      } else {
-        icon.className = "fa-solid fa-volume-xmark";
-        text.innerText = "ÂM THANH HUD";
-      }
-    }
-
-    function playBeepSound() {
-      try {
-        if (!audioContext) {
-          audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        const osc = audioContext.createOscillator();
-        const gain = audioContext.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(587.33, audioContext.currentTime); // D5 tone
-        gain.gain.setValueAtTime(0.05, audioContext.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.15);
-        osc.connect(gain);
-        gain.connect(audioContext.destination);
-        osc.start();
-        osc.stop(audioContext.currentTime + 0.15);
-      } catch (e) {
-        console.log("Audio not supported or blocked");
-      }
+    function handleSwipe() {
+      if (touchendX < touchstartX - 50) nextSlide();
+      if (touchendX > touchstartX + 50) prevSlide();
     }
   </script>
-</body>
-</html>
+<!-- ... existing code -->
